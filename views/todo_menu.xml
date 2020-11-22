@@ -1,0 +1,38 @@
+<odoo>
+  <data>
+    <!-- Action to open To-do Task list -->
+  <act_window id="todoroc_app.action_todo_task"
+    name="To-do Task"
+    res_model="todoroc_app.todoroc_app"
+    view_mode="tree,form" />
+  <!-- Menu item to open To-do Task list -->
+<record model="ir.actions.server" id="todoroc_app.action_server">
+      <field name="name">todorocApp server</field>
+      <field name="model_id" ref="model_todoroc_app_todoroc_app"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "name": "serverAction",
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+   <menuitem id="todoroc_app.menu_todo_task"
+    name="Todos"
+    action="todoroc_app.action_todo_task" />
+
+    <menuitem name="Menu 1" id="todoroc_app.menu_1" parent="todoroc_app.menu_todo_task"/>
+    <menuitem name="Menu 2" id="todoroc_app.menu_2" parent="todoroc_app.menu_todo_task"/>
+
+<menuitem name="List" id="todoroc_app.menu_1_list" parent="todoroc_app.menu_1"
+              action="todoroc_app.action_todo_task"/>
+    <menuitem name="Server to list" id="todoroc_app.menu_2_list" parent="todoroc_app.menu_2"
+              action="todoroc_app.action_server"/>
+    <menuitem name="List" id="todoroc_app.menu_3_list" parent="todoroc_app.menu_2"
+              action="todoroc_app.action_todo_task"/>
+  </data>
+
+</odoo>

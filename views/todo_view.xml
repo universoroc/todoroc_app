@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <record id="todoroc_app.view_tree_todo_task" model="ir.ui.view">
+            <field name="name">To-do Task Tree</field>
+            <field name="model">todoroc_app.todoroc_app</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="is_done==True"
+                      decoration-bf="True"
+                      decoration-danger="is_done==False" >
+<!--                       <tree colors="decoration-muted:is_done==True"> -->
+                    <field name="name"/>
+                    <field name="is_done"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="todoroc_app.view_form_todo_task" model="ir.ui.view">
+            <field name="name">To-do Task Form</field>
+            <field name="model">todoroc_app.todoroc_app</field>
+            <field name="arch" type="xml">
+                <form string="To-do Task">
+                    <header>
+                        <!-- Buttons go here-->
+
+                        <button name="todo_app_do_toggle_done" type="object"
+                                string="Toggle Done" class="oe_highlight" />
+                        <button name="todo_app_do_clear_done" type="object"
+                                string="Clear All Done" />
+                        <button name="todo_app_do_active" type="object"
+                                string="Active All Done" />
+
+                    </header>
+                    <sheet>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="name"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="is_done"/>
+                                <field name="active"  />
+<!--                                <field name="active" readonly="1" />-->
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="todoroc_app.view_filter_todo_task" model="ir.ui.view">
+            <field name="name">To-do Task Filter</field>
+            <field name="model">todoroc_app.todoroc_app</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <filter name="filter_create_date" date="create_date" string="Creation Date"/>
+                    <filter name="not_done" domain="[('is_done','=',False)]" string="Not Done" />
+                    <filter name="done" domain="[('is_done','!=',False)]" string="Done"/>
+                </search>
+            </field>
+        </record>
+    </data>
+
+</odoo>
