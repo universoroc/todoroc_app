@@ -9,7 +9,7 @@ class todoroc_app(models.Model):
     """TODO: model del proyecto -- tareas por hacer del usuario """
 
     _name = 'todoroc_app.todoroc_app'
-    _description = 'To-do Task'
+    _description = 'To-do Task project'
     name = fields.Char('Description', required=True)
     is_done = fields.Boolean('Done?')
     active = fields.Boolean('Active?', default=True)
